@@ -4,4 +4,36 @@ import { Meta } from "@storybook/addon-docs";
 
 # Welcome to Shardeum Design System
 
-Checkout our Design System Components
+Stitches
+
+### DX
+
+Intellisense is good. You write styles in a `css` prop.
+
+```
+<Box css={{borderRadius: '$2', width: '$24'}} />
+
+```
+
+IMO it pollutes the component. It's same as writing TailwindCSS but with component props.
+
+### Responsiveness
+
+Achievable. You can write media query inside the `css` prop like this.
+
+```
+<Box css={{ md: { backgroundColor: '$blue-500'}}}
+```
+
+### Theming
+
+Easy to add
+
+---
+
+### Final Thoughts
+
+I like it but I just don't like the css prop, basically you can put everything in that. px values etc. It's easier to move away from the Design System.
+It's like in an inline style object the only different is you reference the values from the theme.
+
+Don't want to write code like that :(

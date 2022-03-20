@@ -1,6 +1,15 @@
+import { CSSProperties } from "@stitches/react";
+import { HtmlProps } from "next/dist/shared/lib/utils";
 import React from "react";
-import { styled } from "../stiches.config";
-import "../styles/satoshi.css";
+import { darkTheme, styled } from "../../stiches.config";
+import "../../styles/satoshi.css";
+
+export const Box = styled("div", {});
+export const Image = styled("img", {
+  // Reset
+  verticalAlign: "middle",
+  maxWidth: "100%",
+});
 
 const ButtonStyled = styled("button", {
   padding: "17px 28px",
@@ -8,7 +17,19 @@ const ButtonStyled = styled("button", {
   cursor: "pointer",
   border: "none",
   fontFamily: "Satoshi-Variable",
+  "& svg": {
+    display: "inline-block",
+    marginLeft: "8px",
+    width: "16px",
+    height: "16px",
+    verticalAlign: "bottom",
+  },
   variants: {
+    fullWidth: {
+      true: {
+        width: "100%",
+      },
+    },
     disabled: {
       true: {},
     },
@@ -25,9 +46,9 @@ const ButtonStyled = styled("button", {
       },
       secondary: {
         backgroundColor: "$grey-90",
-        color: "$white",
+        color: "$secondaryTextColor",
         "&:hover": {
-          backgroundColor: "$grey-80",
+          backgroundColor: "$secondaryHover",
         },
         "&:active": {
           backgroundColor: "$black",
@@ -66,7 +87,7 @@ const ButtonStyled = styled("button", {
         color: "$grey-40",
         cursor: "not-allowed",
         "&:hover": {
-          backgroundColor: "$grey-20",
+          backgroundColor: "$secondaryHover",
           color: "$grey-40",
         },
       },
@@ -90,16 +111,37 @@ const ButtonStyled = styled("button", {
   },
 });
 
-interface ButtonProps {
+interface ButtonProps
+  extends Omit<
+    React.HTMLProps<HTMLButtonElement>,
+    "children" | "ref" | "css" | "type"
+  > {
   children: React.ReactNode;
   variant: "primary" | "secondary" | "tertiary";
   disabled?: boolean;
+  fullWidth?: boolean;
+  iconRight?: React.ReactNode;
 }
 
-const Button = ({ children, variant = "primary", disabled }: ButtonProps) => {
+const Button = ({
+  children,
+  variant = "primary",
+  disabled,
+  fullWidth,
+  iconRight,
+  ...props
+}: ButtonProps) => {
   return (
-    <ButtonStyled variant={variant} disabled={disabled}>
-      {children}
+    <ButtonStyled
+      variant={variant}
+      disabled={disabled}
+      fullWidth={fullWidth}
+      css={{
+        padding: "",
+      }}
+      {...props}
+    >
+      {children} {iconRight}
     </ButtonStyled>
   );
 };
