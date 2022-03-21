@@ -51,6 +51,7 @@ const theme: ThemeOverride = {
   },
 };
 
+// Adding a comment so a new deployment gets triggered :)
 const extendedTheme = extendTheme(theme);
 
 export default extendedTheme;
