@@ -28,8 +28,6 @@ const IconRight = () => (
   </svg>
 );
 
-}
-
 export const Primary = () => {
   return (
     <>
