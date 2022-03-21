@@ -8,10 +8,18 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=35a201312e0f"
+    "chromatic": "npx chromatic --project-token=35a201312e0f",
+    "gen:theme-typings": "chakra-cli tokens ./theme/index.ts --out node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts",
+    "postinstall": "npm run gen:theme-typings"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.6",
+    "@chakra-ui/theme-tools": "^1.3.6",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@stitches/react": "^1.2.7",
+    "framer-motion": "^6",
     "next": "12.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -20,6 +28,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
+    "@chakra-ui/cli": "^1.9.0",
+    "@chakra-ui/storybook-addon": "^1.0.3",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",

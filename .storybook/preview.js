@@ -1,10 +1,22 @@
-import { useState, useEffect } from 'react'
-import { useDarkMode } from 'storybook-dark-mode'
-import addons from '@storybook/addons';
-import { colors, darkTheme, theme } from '../stiches.config'
+import { ChakraProvider } from '@chakra-ui/react';
+import { colors } from '../stiches.config';
+import '../styles/satoshi.css';
+import theme from '../theme';
+
+
+
+const themeExtended = {
+  brand: {
+    ...colors,
+  }
+}
+
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
+  chakra: {
+    theme
+  },
   darkMode: {
     dark: {
       ...colors,
@@ -23,23 +35,15 @@ export const parameters = {
   },
 }
 
-const channel = addons.getChannel();
 
-const ThemeWrapper = ({ children }) => {
-  const [isDark, setDark] = useState(false);
+const withChakra = (StoryFn) => {
 
-  useEffect(() => {
-    // listen to DARK_MODE event
-    channel.on('DARK_MODE', setDark);
-    return () => channel.off('DARK_MODE', setDark);
-  }, [channel, setDark]);
-
-  return <div className={isDark ? darkTheme : theme}
-    style={isDark ? { backgroundColor: 'black', padding: '20px' } : { backgroundColor: 'white', padding: '20px' }}>
-    {children}
-  </div>
-
+  return (
+    <ChakraProvider theme={theme}>
+      <StoryFn />
+    </ChakraProvider>
+  )
 }
 export const decorators = [
-  (renderStory) => <ThemeWrapper>{renderStory()}</ThemeWrapper>,
+  withChakra
 ]

@@ -1,8 +1,8 @@
+import { ComponentStyleConfig } from "@chakra-ui/react";
 import { CSSProperties } from "@stitches/react";
 import { HtmlProps } from "next/dist/shared/lib/utils";
 import React from "react";
 import { darkTheme, styled } from "../../stiches.config";
-import "../../styles/satoshi.css";
 
 export const Box = styled("div", {});
 export const Image = styled("img", {
